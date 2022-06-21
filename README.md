@@ -1,5 +1,5 @@
 # transformer_OCR
-利用transformer 进行ocr识别。项目主题框架参考deep-text-recognition-benchmark（https://github.com/clovaai/deep-text-recognition-benchmark），训练和测试数据在deep-text-recognition-benchmark 项目中可以进行下载，Transformer 部分 参考pytorch-seq2seq(https://github.com/bentrevett/pytorch-seq2seq)
+利用transformer 进行ocr识别。项目主题框架参考deep-text-recognition-benchmark（https://github.com/clovaai/deep-text-recognition-benchmark )，训练和测试数据在deep-text-recognition-benchmark 项目中可以进行下载，Transformer 部分 参考pytorch-seq2seq(https://github.com/bentrevett/pytorch-seq2seq)
 transformer 结构采用 pytorch-seq2seq 中的demo 参数配置，利用deep-text-recognition-benchmark 中模型对backbone部分进行初始化，平均acc 达到0.85.
 
 # 项目依赖
