@@ -15,10 +15,35 @@ CUDA_VISIBLE_DEVICES=0 python3 train.py \
 --select_data MJ-ST --batch_ratio 0.5-0.5 \
 --Transformation TPS --FeatureExtraction ResNet --SequenceModeling None --Prediction Transformer
 
+## --train_data 讀取資料方式
+  1. 選擇 lmdb 檔案的上兩層
+  2. 搭配 --select_data 選取上一層
+  - 資料夾架構
+    ```
+    data_lmdb_release
+      MJ
+        data.mdb
+        lock.mdb
+      ST
+        data.mdb
+        lock.mdb
+    ```
+
 CUDA_VISIBLE_DEVICES=0 python3 test.py \
 --eval_data data_lmdb_release/evaluation --benchmark_all_eval \
 --Transformation TPS --FeatureExtraction ResNet --SequenceModeling None --Prediction Transformer \
 --saved_model TPS-ResNet-None-Transformer.pth
+
+# Run demo with pretrained model
+1. Download pretrained model from [here](https://drive.google.com/drive/folders/15WPsuPJDCzhp2SvYZLRj8mAlT3zmoAMW)
+2. Add image files to test into `demo_image/`
+3. Run demo.py (add `--sensitive` option if you use case-sensitive model)
+```
+CUDA_VISIBLE_DEVICES=0 python3 demo.py \
+--Transformation TPS --FeatureExtraction ResNet --SequenceModeling BiLSTM --Prediction Attn \
+--image_folder demo_image/ \
+--saved_model TPS-ResNet-BiLSTM-Attn.pth
+```
 
 # 模型效果
 accuracy: IIIT5k_3000: 87.567 SVT: 87.172 IC03_860: 95.465 IC03_867: 94.810 IC13_857: 93.816 IC13_1015: 92.414 IC15_1811: 77.361 IC15_2077: 74.506 SVTP: 78.915 CUTE80: 73.519 total_accuracy: 85.039 averaged_infer_time: 28.099 # parameters: 58.723
