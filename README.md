@@ -15,6 +15,20 @@ CUDA_VISIBLE_DEVICES=0 python3 train.py \
 --select_data MJ-ST --batch_ratio 0.5-0.5 \
 --Transformation TPS --FeatureExtraction ResNet --SequenceModeling None --Prediction Transformer
 
+## --train_data 讀取資料方式
+  1. 選擇 lmdb 檔案的上兩層
+  2. 搭配 --select_data 選取上一層
+  - 資料夾架構
+    ```
+    data_lmdb_release
+      MJ
+        data.mdb
+        lock.mdb
+      ST
+        data.mdb
+        lock.mdb
+    ```
+
 CUDA_VISIBLE_DEVICES=0 python3 test.py \
 --eval_data data_lmdb_release/evaluation --benchmark_all_eval \
 --Transformation TPS --FeatureExtraction ResNet --SequenceModeling None --Prediction Transformer \
